@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.chaindrug.mapper.BizCustomDrugMapper">
+    
+    <resultMap type="BizCustomDrug" id="BizCustomDrugResult">
+        <result property="id"    column="id"    />
+        <result property="hospCode"    column="HOSP_CODE"    />
+        <result property="uCode"    column="U_CODE"    />
+        <result property="uName"    column="U_NAME"    />
+        <result property="uProductName"    column="U_PRODUCT_NAME"    />
+        <result property="uSp"    column="U_SP"    />
+        <result property="uSpec"    column="U_SPEC"    />
+        <result property="uUnit"    column="U_UNIT"    />
+        <result property="uJx"    column="U_JX"    />
+        <result property="uCj"    column="U_CJ"    />
+        <result property="uDl"    column="U_DL"    />
+        <result property="uIsanti"    column="U_ISANTI"    />
+        <result property="uAntitype"    column="U_ANTITYPE"    />
+        <result property="uApprove"    column="U_APPROVE"    />
+        <result property="drugCode"    column="DRUG_CODE"    />
+        <result property="drugName"    column="DRUG_NAME"    />
+        <result property="drugSpec"    column="DRUG_SPEC"    />
+        <result property="drugApprove"    column="DRUG_APPROVE"    />
+        <result property="flag"    column="FLAG"    />
+        <result property="cj"    column="CJ"    />
+        <result property="audit1"    column="AUDIT1"    />
+        <result property="dddValue"    column="DDD_VALUE"    />
+        <result property="dddUnit"    column="DDD_UNIT"    />
+        <result property="allotUser"    column="ALLOT_USER"    />
+        <result property="matchUser"    column="MATCH_USER"    />
+        <result property="allotTime"    column="ALLOT_TIME"    />
+        <result property="matchTime"    column="MATCH_TIME"    />
+        <result property="notHaveSda"    column="NOT_HAVE_SDA"    />
+        <result property="markUser"    column="MARK_USER"    />
+        <result property="state"    column="state"    />
+        <result property="createuser"    column="createUser"    />
+        <result property="createtime"    column="createTime"    />
+        <result property="updateuser"    column="updateUser"    />
+        <result property="updatetime"    column="updateTime"    />
+    </resultMap>
+
+    <sql id="selectBizCustomDrugVo">
+        select id, HOSP_CODE, U_CODE, U_NAME, U_PRODUCT_NAME, U_SP, U_SPEC, U_UNIT, U_JX, U_CJ, U_DL, U_ISANTI, U_ANTITYPE, U_APPROVE, DRUG_CODE, DRUG_NAME, DRUG_SPEC, DRUG_APPROVE, FLAG, CJ, AUDIT1, DDD_VALUE, DDD_UNIT, ALLOT_USER, MATCH_USER, ALLOT_TIME, MATCH_TIME, NOT_HAVE_SDA, MARK_USER, state, createUser, createTime, updateUser, updateTime from biz_custom_drug
+    </sql>
+
+    <select id="selectBizCustomDrugList" parameterType="BizCustomDrug" resultMap="BizCustomDrugResult">
+        <include refid="selectBizCustomDrugVo"/>
+        <where>  
+            <!--<if test="hospCode != null  and hospCode != ''"> and HOSP_CODE = #{hospCode}</if>-->
+            <if test="uCode != null  and uCode != ''"> and U_CODE = #{uCode}</if>
+            <if test="uName != null  and uName != ''"> and U_NAME like concat('%', #{uName}, '%')</if>
+            <if test="uProductName != null  and uProductName != ''"> and U_PRODUCT_NAME like concat('%', #{uProductName}, '%')</if>
+            <if test="uSp != null  and uSp != ''"> and U_SP = #{uSp}</if>
+            <if test="uSpec != null  and uSpec != ''"> and U_SPEC = #{uSpec}</if>
+            <if test="uUnit != null  and uUnit != ''"> and U_UNIT = #{uUnit}</if>
+            <if test="uJx != null  and uJx != ''"> and U_JX = #{uJx}</if>
+            <if test="uCj != null  and uCj != ''"> and U_CJ = #{uCj}</if>
+            <if test="uDl != null  and uDl != ''"> and U_DL = #{uDl}</if>
+            <if test="uIsanti != null  and uIsanti != ''"> and U_ISANTI = #{uIsanti}</if>
+            <if test="uAntitype != null  and uAntitype != ''"> and U_ANTITYPE = #{uAntitype}</if>
+            <if test="uApprove != null  and uApprove != ''"> and U_APPROVE = #{uApprove}</if>
+            <if test="drugCode != null  and drugCode != ''"> and DRUG_CODE = #{drugCode}</if>
+            <if test="drugName != null  and drugName != ''"> and DRUG_NAME like concat('%', #{drugName}, '%')</if>
+            <if test="drugSpec != null  and drugSpec != ''"> and DRUG_SPEC = #{drugSpec}</if>
+            <if test="drugApprove != null  and drugApprove != ''"> and DRUG_APPROVE = #{drugApprove}</if>
+            <if test="flag != null "> and FLAG = #{flag}</if>
+            <if test="cj != null  and cj != ''"> and CJ = #{cj}</if>
+            <if test="audit1 != null "> and AUDIT1 = #{audit1}</if>
+            <if test="dddValue != null "> and DDD_VALUE = #{dddValue}</if>
+            <if test="dddUnit != null  and dddUnit != ''"> and DDD_UNIT = #{dddUnit}</if>
+            <if test="allotUser != null  and allotUser != ''"> and ALLOT_USER = #{allotUser}</if>
+            <if test="matchUser != null  and matchUser != ''"> and MATCH_USER = #{matchUser}</if>
+            <if test="allotTime != null "> and ALLOT_TIME = #{allotTime}</if>
+            <if test="matchTime != null "> and MATCH_TIME = #{matchTime}</if>
+            <if test="notHaveSda != null "> and NOT_HAVE_SDA = #{notHaveSda}</if>
+            <if test="markUser != null  and markUser != ''"> and MARK_USER = #{markUser}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="createuser != null "> and createUser = #{createuser}</if>
+            <if test="createtime != null "> and createTime = #{createtime}</if>
+            <if test="updateuser != null "> and updateUser = #{updateuser}</if>
+            <if test="updatetime != null "> and updateTime = #{updatetime}</if>
+             and HOSP_CODE = #{hospCode}
+        </where>
+    </select>
+    
+    <select id="selectBizCustomDrugById" parameterType="Long" resultMap="BizCustomDrugResult">
+        <include refid="selectBizCustomDrugVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBizCustomDrug" parameterType="BizCustomDrug" useGeneratedKeys="true" keyProperty="id">
+        insert into biz_custom_drug
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hospCode != null">HOSP_CODE,</if>
+            <if test="uCode != null">U_CODE,</if>
+            <if test="uName != null">U_NAME,</if>
+            <if test="uProductName != null">U_PRODUCT_NAME,</if>
+            <if test="uSp != null">U_SP,</if>
+            <if test="uSpec != null">U_SPEC,</if>
+            <if test="uUnit != null">U_UNIT,</if>
+            <if test="uJx != null">U_JX,</if>
+            <if test="uCj != null">U_CJ,</if>
+            <if test="uDl != null">U_DL,</if>
+            <if test="uIsanti != null">U_ISANTI,</if>
+            <if test="uAntitype != null">U_ANTITYPE,</if>
+            <if test="uApprove != null">U_APPROVE,</if>
+            <if test="drugCode != null">DRUG_CODE,</if>
+            <if test="drugName != null">DRUG_NAME,</if>
+            <if test="drugSpec != null">DRUG_SPEC,</if>
+            <if test="drugApprove != null">DRUG_APPROVE,</if>
+            <if test="flag != null">FLAG,</if>
+            <if test="cj != null">CJ,</if>
+            <if test="audit1 != null">AUDIT1,</if>
+            <if test="dddValue != null">DDD_VALUE,</if>
+            <if test="dddUnit != null">DDD_UNIT,</if>
+            <if test="allotUser != null">ALLOT_USER,</if>
+            <if test="matchUser != null">MATCH_USER,</if>
+            <if test="allotTime != null">ALLOT_TIME,</if>
+            <if test="matchTime != null">MATCH_TIME,</if>
+            <if test="notHaveSda != null">NOT_HAVE_SDA,</if>
+            <if test="markUser != null">MARK_USER,</if>
+            <if test="state != null">state,</if>
+            <if test="createuser != null">createUser,</if>
+            <if test="createtime != null">createTime,</if>
+            <if test="updateuser != null">updateUser,</if>
+            <if test="updatetime != null">updateTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hospCode != null">#{hospCode},</if>
+            <if test="uCode != null">#{uCode},</if>
+            <if test="uName != null">#{uName},</if>
+            <if test="uProductName != null">#{uProductName},</if>
+            <if test="uSp != null">#{uSp},</if>
+            <if test="uSpec != null">#{uSpec},</if>
+            <if test="uUnit != null">#{uUnit},</if>
+            <if test="uJx != null">#{uJx},</if>
+            <if test="uCj != null">#{uCj},</if>
+            <if test="uDl != null">#{uDl},</if>
+            <if test="uIsanti != null">#{uIsanti},</if>
+            <if test="uAntitype != null">#{uAntitype},</if>
+            <if test="uApprove != null">#{uApprove},</if>
+            <if test="drugCode != null">#{drugCode},</if>
+            <if test="drugName != null">#{drugName},</if>
+            <if test="drugSpec != null">#{drugSpec},</if>
+            <if test="drugApprove != null">#{drugApprove},</if>
+            <if test="flag != null">#{flag},</if>
+            <if test="cj != null">#{cj},</if>
+            <if test="audit1 != null">#{audit1},</if>
+            <if test="dddValue != null">#{dddValue},</if>
+            <if test="dddUnit != null">#{dddUnit},</if>
+            <if test="allotUser != null">#{allotUser},</if>
+            <if test="matchUser != null">#{matchUser},</if>
+            <if test="allotTime != null">#{allotTime},</if>
+            <if test="matchTime != null">#{matchTime},</if>
+            <if test="notHaveSda != null">#{notHaveSda},</if>
+            <if test="markUser != null">#{markUser},</if>
+            <if test="state != null">#{state},</if>
+            <if test="createuser != null">#{createuser},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="updateuser != null">#{updateuser},</if>
+            <if test="updatetime != null">#{updatetime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBizCustomDrug" parameterType="BizCustomDrug">
+        update biz_custom_drug
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="hospCode != null">HOSP_CODE = #{hospCode},</if>
+            <if test="uCode != null">U_CODE = #{uCode},</if>
+            <if test="uName != null">U_NAME = #{uName},</if>
+            <if test="uProductName != null">U_PRODUCT_NAME = #{uProductName},</if>
+            <if test="uSp != null">U_SP = #{uSp},</if>
+            <if test="uSpec != null">U_SPEC = #{uSpec},</if>
+            <if test="uUnit != null">U_UNIT = #{uUnit},</if>
+            <if test="uJx != null">U_JX = #{uJx},</if>
+            <if test="uCj != null">U_CJ = #{uCj},</if>
+            <if test="uDl != null">U_DL = #{uDl},</if>
+            <if test="uIsanti != null">U_ISANTI = #{uIsanti},</if>
+            <if test="uAntitype != null">U_ANTITYPE = #{uAntitype},</if>
+            <if test="uApprove != null">U_APPROVE = #{uApprove},</if>
+            <if test="drugCode != null">DRUG_CODE = #{drugCode},</if>
+            <if test="drugName != null">DRUG_NAME = #{drugName},</if>
+            <if test="drugSpec != null">DRUG_SPEC = #{drugSpec},</if>
+            <if test="drugApprove != null">DRUG_APPROVE = #{drugApprove},</if>
+            <if test="flag != null">FLAG = #{flag},</if>
+            <if test="cj != null">CJ = #{cj},</if>
+            <if test="audit1 != null">AUDIT1 = #{audit1},</if>
+            <if test="dddValue != null">DDD_VALUE = #{dddValue},</if>
+            <if test="dddUnit != null">DDD_UNIT = #{dddUnit},</if>
+            <if test="allotUser != null">ALLOT_USER = #{allotUser},</if>
+            <if test="matchUser != null">MATCH_USER = #{matchUser},</if>
+            <if test="allotTime != null">ALLOT_TIME = #{allotTime},</if>
+            <if test="matchTime != null">MATCH_TIME = #{matchTime},</if>
+            <if test="notHaveSda != null">NOT_HAVE_SDA = #{notHaveSda},</if>
+            <if test="markUser != null">MARK_USER = #{markUser},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="createuser != null">createUser = #{createuser},</if>
+            <if test="createtime != null">createTime = #{createtime},</if>
+            <if test="updateuser != null">updateUser = #{updateuser},</if>
+            <if test="updatetime != null">updateTime = #{updatetime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBizCustomDrugById" parameterType="Long">
+        delete from biz_custom_drug where id = #{id}
+    </delete>
+
+    <delete id="deleteBizCustomDrugByIds" parameterType="String">
+        delete from biz_custom_drug where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

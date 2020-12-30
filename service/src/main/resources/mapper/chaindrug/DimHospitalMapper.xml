@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.chaindrug.mapper.DimHospitalMapper">
+    
+    <resultMap type="DimHospital" id="DimHospitalResult">
+        <result property="id"    column="id"    />
+        <result property="hospCode"    column="HOSP_CODE"    />
+        <result property="hospName"    column="HOSP_NAME"    />
+        <result property="serverIp"    column="SERVER_IP"    />
+        <result property="serverMac"    column="SERVER_MAC"    />
+        <result property="serverLic"    column="SERVER_LIC"    />
+        <result property="serverOvertime"    column="SERVER_OVERTIME"    />
+        <result property="createuser"    column="createUser"    />
+        <result property="createtime"    column="createTime"    />
+        <result property="updateuser"    column="updateUser"    />
+        <result property="updatetime"    column="updateTime"    />
+    </resultMap>
+
+    <sql id="selectDimHospitalVo">
+        select id, HOSP_CODE, HOSP_NAME, SERVER_IP, SERVER_MAC, SERVER_LIC, SERVER_OVERTIME, createUser, createTime, updateUser, updateTime from dim_hospital
+    </sql>
+
+    <select id="selectDimHospitalList" parameterType="DimHospital" resultMap="DimHospitalResult">
+        <include refid="selectDimHospitalVo"/>
+        <where>  
+            <if test="hospCode != null  and hospCode != ''"> and HOSP_CODE like concat('%',#{hospCode},'%') </if>
+            <if test="hospName != null  and hospName != ''"> and HOSP_NAME like concat('%', #{hospName}, '%')</if>
+            <if test="serverIp != null  and serverIp != ''"> and SERVER_IP = #{serverIp}</if>
+            <if test="serverMac != null  and serverMac != ''"> and SERVER_MAC = #{serverMac}</if>
+            <if test="serverLic != null  and serverLic != ''"> and SERVER_LIC = #{serverLic}</if>
+            <if test="serverOvertime != null "> and SERVER_OVERTIME = #{serverOvertime}</if>
+            <if test="createuser != null "> and createUser = #{createuser}</if>
+            <if test="createtime != null "> and createTime = #{createtime}</if>
+            <if test="updateuser != null "> and updateUser = #{updateuser}</if>
+            <if test="updatetime != null "> and updateTime = #{updatetime}</if>
+        </where>
+    </select>
+    
+    <select id="selectDimHospitalById" parameterType="Long" resultMap="DimHospitalResult">
+        <include refid="selectDimHospitalVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDimHospital" parameterType="DimHospital" useGeneratedKeys="true" keyProperty="id">
+        insert into dim_hospital
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hospCode != null">HOSP_CODE,</if>
+            <if test="hospName != null">HOSP_NAME,</if>
+            <if test="serverIp != null">SERVER_IP,</if>
+            <if test="serverMac != null">SERVER_MAC,</if>
+            <if test="serverLic != null">SERVER_LIC,</if>
+            <if test="serverOvertime != null">SERVER_OVERTIME,</if>
+            <if test="createuser != null">createUser,</if>
+            <if test="createtime != null">createTime,</if>
+            <if test="updateuser != null">updateUser,</if>
+            <if test="updatetime != null">updateTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hospCode != null">#{hospCode},</if>
+            <if test="hospName != null">#{hospName},</if>
+            <if test="serverIp != null">#{serverIp},</if>
+            <if test="serverMac != null">#{serverMac},</if>
+            <if test="serverLic != null">#{serverLic},</if>
+            <if test="serverOvertime != null">#{serverOvertime},</if>
+            <if test="createuser != null">#{createuser},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="updateuser != null">#{updateuser},</if>
+            <if test="updatetime != null">#{updatetime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDimHospital" parameterType="DimHospital">
+        update dim_hospital
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="hospCode != null">HOSP_CODE = #{hospCode},</if>
+            <if test="hospName != null">HOSP_NAME = #{hospName},</if>
+            <if test="serverIp != null">SERVER_IP = #{serverIp},</if>
+            <if test="serverMac != null">SERVER_MAC = #{serverMac},</if>
+            <if test="serverLic != null">SERVER_LIC = #{serverLic},</if>
+            <if test="serverOvertime != null">SERVER_OVERTIME = #{serverOvertime},</if>
+            <if test="createuser != null">createUser = #{createuser},</if>
+            <if test="createtime != null">createTime = #{createtime},</if>
+            <if test="updateuser != null">updateUser = #{updateuser},</if>
+            <if test="updatetime != null">updateTime = #{updatetime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDimHospitalById" parameterType="Long">
+        delete from dim_hospital where id = #{id}
+    </delete>
+
+    <delete id="deleteDimHospitalByIds" parameterType="String">
+        delete from dim_hospital where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
